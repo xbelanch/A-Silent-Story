@@ -11,12 +11,9 @@ import org.flixel.FlxSprite;
 import org.flixel.FlxState;
 import org.flixel.FlxText;
 import org.flixel.FlxU;
-import org.flixel.FlxEmitter;
-import org.flixel.FlxParticle;
 import org.flixel.plugin.pxText.PxTextAlign;
-import org.flixel.FlxTimer;
-import org.flixel.tweens.misc.Alarm;
 
+// personal stuff
 import ButtonCredits;
 import Credits;
 import Rain;
@@ -36,6 +33,15 @@ class MenuState extends FlxState
 		FlxG.mouse.hide();
 		#end
 
+		// ground collision 
+		var ground:FlxSprite = new FlxSprite(0, 425);
+        ground.immovable =  true;
+        ground.color = 0xff04013d;
+        ground.makeGraphic(640, 5);
+        add(ground);
+        var hitGround:Array<FlxSprite> = new Array();
+        hitGround.push(ground);
+
 		// add menu background
 		var background:FlxSprite = new FlxSprite(0, 0);
 		background.loadGraphic("assets/backgrounds/back0.png", false, false);
@@ -50,13 +56,6 @@ class MenuState extends FlxState
 		var startGameButton:ButtonCredits = new ButtonCredits(0, 170, "Start New Game", playGame, 22, true, false, 5);
 
 		// Rain stuff
-		var ground:FlxSprite = new FlxSprite(0, 425);
-        ground.immovable =  true;
-        ground.color = 0xff04013d;
-        ground.makeGraphic(640, 5);
-        add(ground);
-        var hitGround:Array<FlxSprite> = new Array();
-        hitGround.push(ground);
 		var rain:Rain = new Rain("assets/rain_particle.png", this, hitGround);
 
 		// add objects to FlxState

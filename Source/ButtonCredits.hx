@@ -23,13 +23,11 @@ class ButtonCredits extends FlxButton
         this.label = new FlxText(0, 0, 640, Text);
         this.label.alignment = "center";
         this.label.color = 0xffffffff;
-        // set graphics button to alpha 0
         this.loadGraphic("assets/mybutton.png",true,false,640, 25);
         this.alpha = 1.0;
         this.label.size = Size;
 		this.onOver = _onOver;
-		// this.onOut = _onOut;
-		// this.onUp = _onUp;
+		this.onOut = _onOut;
 
 		numTween = new NumTween(null, FlxTween.PERSIST);
   		addTween(numTween);
@@ -56,8 +54,6 @@ class ButtonCredits extends FlxButton
     {
         super.update();
     	this.label.alpha = numTween.value;
-    	// add a conditional
-    	// if this.label.alpha < 1 button.push doesn't do anything :)
     }
 
     private function onAlarmFadeIn():Void
@@ -70,20 +66,15 @@ class ButtonCredits extends FlxButton
         numTween.tween(1, 0, DURATION, Ease.sineOut);
     }
 
-	// this is annoying :-/ it would be another way to do it much simple!
 	private function _onOver():Void
 	{
-		this.label.color = 0xffff00;
+		this.label.color = 0xffffff00;
 	}
 	public function _onOut():Void
 	{
 		this.label.color = 0xffffffff;
 	}
-	public function _onUp():Void
-	{
-		this.label.color = 0xffffffff;
 
-	}
 }
 
 
