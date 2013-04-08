@@ -12,6 +12,7 @@ import org.flixel.FlxState;
 import org.flixel.FlxText;
 import org.flixel.FlxU;
 import org.flixel.plugin.pxText.PxTextAlign;
+import nme.display.BitmapData;
 
 // personal stuff
 import ButtonCredits;
@@ -23,14 +24,19 @@ class MenuState extends FlxState
 
 	override public function create():Void
 	{
+		
+
 		#if !neko
 		FlxG.bgColor = 0xff000000;
 		#else
 		FlxG.camera.bgColor = {rgb: 0x000000, a: 0xff};
 		#end		
 		#if !FLX_NO_MOUSE
-		FlxG.mouse.useSystemCursor = true;
-		FlxG.mouse.hide();
+		// define cursor
+		// http://haxeflixel.com/forum/development/how-hide-flixel-mouse-cursor-when-i-use-system-one
+		var cursor:nme.display.BitmapData = new BitmapData(1, 1, 0x00000000);
+		FlxG.mouse.show(cursor);
+		nme.ui.Mouse.show();
 		#end
 
 		// ground collision 
