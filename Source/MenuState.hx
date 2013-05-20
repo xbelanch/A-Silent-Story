@@ -14,17 +14,15 @@ import org.flixel.FlxU;
 import org.flixel.plugin.pxText.PxTextAlign;
 import nme.display.BitmapData;
 
-// personal stuff
-import ButtonCredits;
-import Credits;
-import Rain;
 
 class MenuState extends FlxState
 {
 
 	override public function create():Void
 	{
-		
+		// remove this ///////// 
+		// playGame();		
+		////////////////////////
 
 		#if !neko
 		FlxG.bgColor = 0xff000000;
@@ -62,7 +60,8 @@ class MenuState extends FlxState
 		var startGameButton:ButtonCredits = new ButtonCredits(0, 170, "Start New Game", playGame, 22, true, false, 5);
 
 		// Rain stuff
-		var rain:Rain = new Rain("assets/rain_particle.png", this, hitGround);
+		// var rain:Rain = new Rain(FlxAssets.ImgParticleRain, this, hitGround);
+		var rain:Rain = new Rain("assets/fx/rain_particle.png", this, hitGround);
 
 		// add objects to FlxState
 		add(rain);
@@ -80,12 +79,27 @@ class MenuState extends FlxState
 	override public function update():Void
 	{
 		super.update();
+
+		// override menu state 
+		// this not works on CPP 
+		if (FlxG.keys.justPressed("X"))
+		{
+			FlxG.switchState(new PlayState());
+		} 
 	}
 
 	private function playGame():Void
 	{
+
 		FlxG.flash();
-		FlxG.fade(0x000000, 1, false);
+		FlxG.fade(0x000000, 0.5, false, onFade);
+		// FlxG.switchState(new PlayState());
+	}
+
+	// This callback function load up a new game when FlxG.fade() finishes. 
+	private function onFade():Void
+	{
+		FlxG.switchState(new PlayState());
 	}
 
 }

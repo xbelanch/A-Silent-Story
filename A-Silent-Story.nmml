@@ -20,7 +20,6 @@
 	
 	<assets path="assets" if="desktop" >
 		<sound path="data/beep.wav" id="Beep" />
-		<sound path="explosion.wav" id="Explosion" />
 		
 		<!-- Your sound embedding code here... -->
 		
@@ -28,7 +27,6 @@
 	
 	<assets path="assets" if="flash" >
 		<sound path="data/beep.mp3" id="Beep" />
-		<sound path="explosion.wav" id="Explosion" />
 		
 		<!-- Your sound embedding code here... -->
 		
@@ -62,5 +60,10 @@
     <!--<set name="FLX_NO_KEYBOARD" if="mobile" />-->
     <!--<set name="FLX_NO_TOUCH" if="desktop" />-->
     <!--<set name="FLX_NO_JOYSTICK" />-->
+
+    <!-- Custom preloader -->
+    <!-- http://haxeflixel.com/forum/help/how-do-you-override-preloader -->
+    <app preloader="MyPreloader" unless="html5" />
+
 
 </project>
